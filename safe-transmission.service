@@ -1,0 +1,13 @@
+[Unit]
+Description=Setup the VPN and routing for the transmission user
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+User=root
+Type=notify
+ExecStart=/usr/bin/safe_transmission.sh
+ExecReload=/bin/kill -s HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target
